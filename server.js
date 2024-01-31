@@ -10,35 +10,11 @@ app.use(morgan('combined'))
 dotenv.config()
 
 app.get('/', (req, res) => {
-  res.json({
-    version: process.env.APPVERSION,
-    hostname: os.hostname(),
-    uptime: process.uptime()
-  })
+  res.json(getInfo());
 })
 
-app.get('/osinfo', (req, res) => {
-  res.json(getOsInfo());
-})
-
-app.get('/env', (req, res) => {
-  res.json(process.env);
-})
-
-// Ready 
-app.get('/ready', (req, res) => {
-  let uptime = process.uptime()
-  if (uptime < Number(process.env.GET_READY_IN)) {
-    res.status(404).json({
-      version: process.env.APPVERSION,
-      uptime: process.uptime()
-    })
-  } else {
-    res.json({
-      version: process.env.APPVERSION,
-      uptime: process.uptime()
-    })
-  }
+app.get('/call', (req, res) => {
+  res.json(getInfo());
 })
 
 // 
@@ -48,17 +24,25 @@ app.get('/kill', (req, res) => {
 })
 
 // Utility functions
-const getOsInfo = () => {
+const getInfo = () => {
   return {
     uptime: os.uptime(),
     type: os.type(),
     release: os.release(),
     hostname: os.hostname(),
     arch: os.arch(),
-    platform: os.platform()
+    platform: os.platform(),
+    env: process.env
   };
 }
 
+const delayedCall = (msg) => {
+  setTimeout(() => {
+    
+  }, 60);
+}
+
+
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Cmcy listening at http://localhost:${port}`)
 })
