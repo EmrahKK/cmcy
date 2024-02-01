@@ -15,8 +15,8 @@ app.get('/', (req, res) => {
 app.post('/call', (req, res) => {
   console.log(req.body);
   res.send(req.body);
-  req.body.receivedBy = identity
-  req.body.receivedts = moment().format('MMMM Do YYYY, h:mm:ss a');
+  req.body[req.body.length - 1].receivedBy = identity;
+  req.body[req.body.length - 1].receivedts = moment().format('MMMM Do YYYY, h:mm:ss a');
   delayedCall(req.body);
 })
 
