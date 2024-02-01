@@ -12,8 +12,8 @@ app.get('/', (req, res) => {
 })
 
 app.post('/call', (req, res) => {
-  console.log(request.body);
-  res.send(request.body);
+  console.log(req.body);
+  res.send(req.body);
   delayedCall(req.body);
 })
 
