@@ -2,6 +2,7 @@ const os = require('os')
 const express = require('express')
 const dotenv = require('dotenv')
 const moment = require('moment')
+const axios = require('axios')
 const app = express()
 const port = 8080
 
@@ -49,7 +50,7 @@ const delayedCall = (msg) => {
       newMsg.sendts = moment().format('MMMM Do YYYY, h:mm:ss a');
       msg.push(newMsg);
       console.log("Delayed Call To ",callStack[rndInt]);
-      console.log(msg);
+      axios.post('https://'+callStack[rndInt]+'/call', msg);
     }, 5000);
   } 
 }
