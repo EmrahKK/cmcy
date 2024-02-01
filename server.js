@@ -4,9 +4,7 @@ const dotenv = require('dotenv')
 const app = express()
 const port = 8080
 
-var morgan = require('morgan')
-app.use(morgan('combined'))
-
+app.use(express.json())
 dotenv.config()
 
 app.get('/', (req, res) => {
@@ -14,7 +12,9 @@ app.get('/', (req, res) => {
 })
 
 app.get('/call', (req, res) => {
-  res.json(getInfo());
+  console.log(request.body);
+  res.send(request.body);
+  delayedCall(req.body);
 })
 
 // 
@@ -38,8 +38,10 @@ const getInfo = () => {
 
 const delayedCall = (msg) => {
   setTimeout(() => {
-    
-  }, 60);
+    console.log("---Delayed Call---");
+    console.log(msg);
+    console.log("---");
+  }, 10);
 }
 
 
