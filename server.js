@@ -43,9 +43,14 @@ const delayedCall = (msg) => {
   const rndInt = Math.floor(Math.random() * 3) + 1
   console.log("rndInt: ",rndInt)
   if (rndInt!=3) {    
-    setTimeout(() => {
+    setTimeout(() => {      
+      let newMsg = {};
+      newMsg.message = 'message from '+identity
+      newMsg.sendts = moment().format('MMMM Do YYYY, h:mm:ss a');
+      msg.push(newMsg);
       console.log("Delayed Call To ",callStack[rndInt]);
       console.log(msg);
+
     }, 5000);
   } 
 }
