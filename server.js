@@ -49,7 +49,7 @@ const delayedCall = (msg) => {
       msg.push(newMsg);
       console.log("Delayed Call To ",callStack[rndInt]);
       console.log(msg);
-      axios.post('https://'+callStack[rndInt]+'/call', msg);
+      axios.post('http://'+callStack[rndInt]+'/call', msg);
     }, 5000);
   } 
 }
