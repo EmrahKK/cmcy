@@ -50,7 +50,6 @@ const delayedCall = (msg) => {
       msg.push(newMsg);
       console.log("Delayed Call To ",callStack[rndInt]);
       console.log(msg);
-
     }, 5000);
   } 
 }
