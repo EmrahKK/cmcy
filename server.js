@@ -1,6 +1,7 @@
 const os = require('os')
 const express = require('express')
 const dotenv = require('dotenv')
+const moment = require('moment')
 const app = express()
 const port = 8080
 
@@ -14,6 +15,8 @@ app.get('/', (req, res) => {
 app.post('/call', (req, res) => {
   console.log(req.body);
   res.send(req.body);
+  req.body.receivedBy = identity
+  req.body.receivedts = moment().format('MMMM Do YYYY, h:mm:ss a');
   delayedCall(req.body);
 })
 
@@ -48,7 +51,9 @@ const delayedCall = (msg) => {
 }
 
 const callStack = process.env.CALL_STACK.split(',');
+const identity = process.env.IDENTITY;
 console.log(callStack);
+console.log(identity);
 
 app.listen(port, () => {
   console.log(`Cmcy listening at http://localhost:${port}`)
