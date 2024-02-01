@@ -41,7 +41,7 @@ const delayedCall = (msg) => {
     console.log("---Delayed Call---");
     console.log(msg);
     console.log("---");
-  }, 10);
+  }, 5000);
 }
 
 
