@@ -1,0 +1,16 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: cmcy
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    app: cmcy
+    deploymentconfig: cmcy

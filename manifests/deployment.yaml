@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:  
+  labels:
+    app: cmcy
+  name: cmcy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cmcy
+  strategy: {}
+  template:
+    metadata:      
+      labels:
+        app: cmcy
+    spec:
+      containers:
+      - image: emrahkk/echo-server
+        name: echo-server
+        resources: {}
+        ports:
+          - name: http
+            containerPort: 8080
+            protocol: TCP        
+status: {}
