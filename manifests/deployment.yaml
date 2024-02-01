@@ -16,11 +16,10 @@ spec:
         app: cmcy
     spec:
       containers:
-      - image: emrahkk/echo-server
+      - image: emrahkk/cmcy:latest
         name: echo-server
         resources: {}
         ports:
           - name: http
             containerPort: 8080
-            protocol: TCP        
-status: {}
+            protocol: TCP
