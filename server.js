@@ -41,9 +41,8 @@ const delayedCall = (msg) => {
   console.log("rndInt: ",rndInt)
   if (rndInt!=4) {    
     setTimeout(() => {
-      console.log("---Delayed Call--- ");
+      console.log("Delayed Call To ",callStack[rndInt]);
       console.log(msg);
-      console.log("---");
     }, 5000);
   } 
 }
