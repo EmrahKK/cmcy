@@ -37,11 +37,15 @@ const getInfo = () => {
 }
 
 const delayedCall = (msg) => {
-  setTimeout(() => {
-    console.log("---Delayed Call---");
-    console.log(msg);
-    console.log("---");
-  }, 5000);
+  const rndInt = Math.floor(Math.random() * 4) + 1
+  console.log("rndInt: ",rndInt)
+  if (rndInt!=4) {    
+    setTimeout(() => {
+      console.log("---Delayed Call--- ");
+      console.log(msg);
+      console.log("---");
+    }, 5000);
+  } 
 }
 
 
