@@ -14,7 +14,6 @@ app.get('/', (req, res) => {
 })
 
 app.post('/call', (req, res) => {
-  console.log(req.body);
   res.send(req.body);
   req.body[req.body.length - 1].receivedBy = identity;
   req.body[req.body.length - 1].receivedts = moment().format('MMMM Do YYYY, h:mm:ss a');
@@ -42,7 +41,6 @@ const getInfo = () => {
 
 const delayedCall = (msg) => {
   const rndInt = Math.floor(Math.random() * 3) + 1
-  console.log("rndInt: ",rndInt)
   if (rndInt!=3) {    
     setTimeout(() => {      
       let newMsg = {};
@@ -50,6 +48,7 @@ const delayedCall = (msg) => {
       newMsg.sendts = moment().format('MMMM Do YYYY, h:mm:ss a');
       msg.push(newMsg);
       console.log("Delayed Call To ",callStack[rndInt]);
+      console.log(msg);
       axios.post('https://'+callStack[rndInt]+'/call', msg);
     }, 5000);
   } 
@@ -57,9 +56,8 @@ const delayedCall = (msg) => {
 
 const callStack = process.env.CALL_STACK.split(',');
 const identity = process.env.IDENTITY;
-console.log(callStack);
 console.log(identity);
 
 app.listen(port, () => {
-  console.log(`Cmcy listening at http://localhost:${port}`)
+  console.log(identity+' listening')
 })
