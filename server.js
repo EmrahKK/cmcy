@@ -48,6 +48,8 @@ const delayedCall = (msg) => {
   } 
 }
 
+const callStack = process.env.CALL_STACK.split(',');
+console.log(callstack);
 
 app.listen(port, () => {
   console.log(`Cmcy listening at http://localhost:${port}`)
