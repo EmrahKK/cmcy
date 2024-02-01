@@ -37,9 +37,9 @@ const getInfo = () => {
 }
 
 const delayedCall = (msg) => {
-  const rndInt = Math.floor(Math.random() * 4) + 1
+  const rndInt = Math.floor(Math.random() * 3) + 1
   console.log("rndInt: ",rndInt)
-  if (rndInt!=4) {    
+  if (rndInt!=3) {    
     setTimeout(() => {
       console.log("Delayed Call To ",callStack[rndInt]);
       console.log(msg);
