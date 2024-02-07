@@ -17,6 +17,9 @@ app.post('/call', (req, res) => {
   res.send(req.body);
   req.body[req.body.length - 1].receivedBy = identity;
   req.body[req.body.length - 1].receivedts = moment().format('MMMM Do YYYY, h:mm:ss a');
+  console.log("Received Call")
+  console.log(req.body)
+  console.log("----------------------------------")
   delayedCall(req.body);
 })
 
@@ -41,24 +44,18 @@ const getInfo = () => {
 
 const delayedCall = (msg) => {
   const rndInt = Math.floor(Math.random() * 3) + 1
-  if (rndInt!=3) {   
-
+  if ((rndInt!=3) && (callStack[rndInt] != identity)) {   
     setTimeout(() => {      
       let newMsg = {};
       newMsg.message = 'message from '+identity
       newMsg.sendts = moment().format('MMMM Do YYYY, h:mm:ss a');
-      msg.push(newMsg);
-      console.log("Delayed Call To ",callStack[rndInt]);
+      msg.push(newMsg);            
+      console.log("Calling ",callStack[rndInt]);
       console.log(msg);
-      
-      if (callStack[rndInt] != identity) {
-        axios.post('http://'+callStack[rndInt]+'/call', msg); 
-      }
-
+      console.log("----------------------------------")
+      axios.post('http://'+callStack[rndInt]+'/call', msg);       
     }, 5000);
-
-  } 
-  else {
+  } else {
     console.log("Not Calling Anyone ");
     console.log(msg);
 }}
