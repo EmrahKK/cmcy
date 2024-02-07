@@ -57,6 +57,7 @@ const delayedCall = (msg) => {
 const callStack = process.env.CALL_STACK.split(',');
 const identity = process.env.IDENTITY;
 console.log(identity);
+console.log(callStack);
 
 app.listen(port, () => {
   console.log(identity+' listening')
