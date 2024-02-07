@@ -49,7 +49,9 @@ const delayedCall = (msg) => {
       msg.push(newMsg);
       console.log("Delayed Call To ",callStack[rndInt]);
       console.log(msg);
-      axios.post('http://'+callStack[rndInt]+'/call', msg);
+      if (callStack[rndInt] != identity) {
+        axios.post('http://'+callStack[rndInt]+'/call', msg); 
+      }
     }, 5000);
   } 
 }
