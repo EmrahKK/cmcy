@@ -41,7 +41,8 @@ const getInfo = () => {
 
 const delayedCall = (msg) => {
   const rndInt = Math.floor(Math.random() * 3) + 1
-  if (rndInt!=3) {    
+  if (rndInt!=3) {   
+
     setTimeout(() => {      
       let newMsg = {};
       newMsg.message = 'message from '+identity
@@ -49,14 +50,18 @@ const delayedCall = (msg) => {
       msg.push(newMsg);
       console.log("Delayed Call To ",callStack[rndInt]);
       console.log(msg);
+      
       if (callStack[rndInt] != identity) {
         axios.post('http://'+callStack[rndInt]+'/call', msg); 
       }
+
     }, 5000);
-  } else {
+
+  } 
+  else {
     console.log("Not Calling Anyone ");
     console.log(msg);
-}
+}}
 
 const callStack = process.env.CALL_STACK.split(',');
 const identity = process.env.IDENTITY;
