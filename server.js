@@ -53,7 +53,9 @@ const delayedCall = (msg) => {
         axios.post('http://'+callStack[rndInt]+'/call', msg); 
       }
     }, 5000);
-  } 
+  } else {
+    console.log("Not Calling Anyone ");
+    console.log(msg);
 }
 
 const callStack = process.env.CALL_STACK.split(',');
