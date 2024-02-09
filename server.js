@@ -16,10 +16,8 @@ app.get('/', (req, res) => {
 app.post('/call', (req, res) => {
   res.send(req.body);
   req.body[req.body.length - 1].receivedBy = identity;
-  req.body[req.body.length - 1].receivedts = moment().format('MMMM Do YYYY, h:mm:ss a');
-  console.log("Received Call")
-  console.log(req.body)
-  console.log("----------------------------------")
+  req.body[req.body.length - 1].receivedts = moment().format('MMMM Do YYYY, h:mm:ss a');    
+  console.log("Received Call " + JSON.stringify(req.body));
   delayedCall(req.body);
 })
 
@@ -50,14 +48,12 @@ const delayedCall = (msg) => {
       newMsg.message = 'message from '+identity
       newMsg.sendts = moment().format('MMMM Do YYYY, h:mm:ss a');
       msg.push(newMsg);            
-      console.log("Calling ",callStack[rndInt]);
-      console.log(msg);
+      console.log("Calling ",callStack[rndInt]);      
       console.log("----------------------------------")
       axios.post('http://'+callStack[rndInt]+'/call', msg);       
     }, 5000);
   } else {
     console.log("Not Calling Anyone ");
-    console.log(msg);
 }}
 
 const callStack = process.env.CALL_STACK.split(',');
