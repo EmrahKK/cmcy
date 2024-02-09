@@ -48,8 +48,7 @@ const delayedCall = (msg) => {
       newMsg.message = 'message from '+identity
       newMsg.sendts = moment().format('MMMM Do YYYY, h:mm:ss a');
       msg.push(newMsg);            
-      console.log("Calling ",callStack[rndInt]);      
-      console.log("----------------------------------")
+      console.log("Calling ",callStack[rndInt]);            
       axios.post('http://'+callStack[rndInt]+'/call', msg);       
     }, 5000);
   } else {
